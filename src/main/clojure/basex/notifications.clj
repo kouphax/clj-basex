@@ -1,8 +1,8 @@
 (ns basex.notifications
-  (:import (basex.core.EventNotifier)))
+  (:import (basex.core BaseXClient$EventNotifier)))
 
 (defn- build-notifier [notifier-action]
-  (reify EventNotifier
+  (reify BaseXClient$EventNotifier
     (notify [this value]
       (notifier-action value))))
 
