@@ -57,6 +57,16 @@
     ; close query instance
     (query/close query)))
 
+
+(defn query-bind-example
+  [session]
+  (let [input "declare variable $name external;
+               for $i in 1 to 10 return element { $name } { $i }"
+        query (query/create-query session input)]
+    (query/bind query "$name" "number")
+    (println (query/execute query))
+    (query/close query)))
+
 (defn event-example
   "This example demonstrates how to trigger and receive database events"
   [session-1]
@@ -73,11 +83,35 @@
       (finally
         (client/close session-2)))))
 
+(defn binary-example
+  [session]
+  (client/execute session "create db database")
+  (println (client/info session))
+  (let [data (byte-array (map byte (range 128)))
+        bais (java.io.ByteArrayInputStream. data)
+        baos (java.io.ByteArrayOutputStream.)]
+    (client/store session "test.bin" bais)
+    (println (client/info session))
+    (client/execute session "retrieve test.bin" baos)
+    (if (java.util.Arrays/equals data (.toByteArray baos))
+      (println "Stored and retrieved bytes are equal.")
+      (println "Stored and retrieved bytes differ!")))
+  (client/execute session "drop db database"))
+
 (defn -main [& args]
+  (System/setProperty "org.basex.DBPATH" "./.basex/data")
   (let [server  (BaseXServer. (into-array String []))
         session (client/create-session)]
     (try
-      (event-example session)
+      (simple-example session)
+      (add-example    session)
+      (query-example  session)
+      (event-example  session)
+      (binary-example session)
+      (query-bind-example session)
       (finally
         (client/close session)
         (.stop server)))))
+
+(-main)
+
