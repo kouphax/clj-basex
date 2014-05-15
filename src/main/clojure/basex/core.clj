@@ -6,38 +6,6 @@
   (:gen-class))
 
 
-(defn simple-example [session]
-  (println (client/execute session "xquery 1 to 10")))
-
-(defn add-example
-  "This example shows how documents can be added to databases, and how existing
-   documents can be replaced."
-  [session]
-  ; create an empty database
-  (client/execute session "create db database")
-  (println (client/info session))
-
-  ; add a document
-  (let [bais (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World!</x>"))]
-    (client/add session "world/world.xml" bais)
-    (println (client/info session)))
-
-  ; add another document
-  (let [bais (java.io.ByteArrayInputStream. (.getBytes "<x>Hello Universe!</x>"))]
-    (client/add session "universe.xml" bais)
-    (println (client/info session)))
-
-  ; run query on database
-  (println (client/execute session "xquery collection('database')"))
-
-  ; replace a document
-  (let [bais (java.io.ByteArrayInputStream. (.getBytes "<x>Hello Replacement!</x>"))]
-    (client/replace session "universe.xml" bais)
-    (println (client/info session)))
-
-  ; drop database
-  (client/execute session "drop db database"))
-
 (defn query-example
   "This example shows how queries can be executed in an iterative manner.
    Iterative evaluation will be slower, as more server requests are performed."
@@ -82,36 +50,3 @@
       (client/execute session-1 "drop event messenger")
       (finally
         (client/close session-2)))))
-
-(defn binary-example
-  [session]
-  (client/execute session "create db database")
-  (println (client/info session))
-  (let [data (byte-array (map byte (range 128)))
-        bais (java.io.ByteArrayInputStream. data)
-        baos (java.io.ByteArrayOutputStream.)]
-    (client/store session "test.bin" bais)
-    (println (client/info session))
-    (client/execute session "retrieve test.bin" baos)
-    (if (java.util.Arrays/equals data (.toByteArray baos))
-      (println "Stored and retrieved bytes are equal.")
-      (println "Stored and retrieved bytes differ!")))
-  (client/execute session "drop db database"))
-
-(defn -main [& args]
-  (System/setProperty "org.basex.DBPATH" "./.basex/data")
-  (let [server  (BaseXServer. (into-array String []))
-        session (client/create-session)]
-    (try
-      (simple-example session)
-      (add-example    session)
-      (query-example  session)
-      (event-example  session)
-      (binary-example session)
-      (query-bind-example session)
-      (finally
-        (client/close session)
-        (.stop server)))))
-
-(-main)
-

@@ -1,4 +1,5 @@
-(ns basex.query)
+(ns basex.query
+  (:refer-clojure :exclude [next]))
 
 (defn create-query [session query]
   (.query session query))

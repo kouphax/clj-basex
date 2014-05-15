@@ -1,4 +1,5 @@
 (ns basex.client
+  (:refer-clojure :exclude [replace])
   (:import (basex.core BaseXClient)))
 
 (def ^:private default-db-spec
@@ -6,6 +7,7 @@
     :port     1984
     :username "admin"
     :password "admin" })
+
 
 (defn create-session
   ([]

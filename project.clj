@@ -7,8 +7,10 @@
   :java-source-paths  ["src/main/java"]
   :source-paths ["src/main/clojure"]
 
-  :main ^:skip-aot basex.core
+  :dependencies [[org.clojure/clojure "1.5.1"] ]
 
-  :repositories { "BaseX Maven Repository" "http://files.basex.org/maven"}
-  :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.basex/basex "7.8.2"]])
+  :profiles { :dev { :repositories { "BaseX Maven Repository" "http://files.basex.org/maven" }
+                     :dependencies [[org.basex/basex "7.8.2"]
+                                    [midje "1.5.1"]
+                                    [me.raynes/fs "1.4.4"]]}})
+
