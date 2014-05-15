@@ -1,16 +1,11 @@
 (ns basex.client-test
   (:require [midje.sweet :refer :all]
             [basex.client :as client]
+            [basex.support :refer [with-test-server]]
             [me.raynes.fs :refer [delete-dir temp-dir]])
   (:import (org.basex BaseXServer)))
 
-(def data-path
-  (.getAbsolutePath
-    (temp-dir "basex")))
-
-(System/setProperty "org.basex.DBPATH" data-path)
-(let [server (BaseXServer. (into-array String []))]
-  (try
+(with-test-server
 
     (fact "We can create a session with or without a spec"
       (client/create-session)                => truthy
@@ -56,7 +51,4 @@
         (client/execute session "retrieve test.bin" doc-out)
         (java.util.Arrays/equals data (.toByteArray doc-out)) => true
         (client/execute session "drop db database")))
-
-    (finally
-      (.stop server)
-      (delete-dir data-path))))
+    )
