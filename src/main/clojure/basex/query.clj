@@ -33,3 +33,4 @@
 
 (defn close [query]
   (.close query))
+
