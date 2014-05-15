@@ -4,7 +4,7 @@ A Clojure-ified wrapper around the BaseX Java client.
 
 ## Usage
 
-FIXME
+TODO
 
 ## License
 
