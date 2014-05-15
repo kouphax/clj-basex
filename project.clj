@@ -10,8 +10,8 @@
   :dependencies [[org.clojure/clojure "1.5.1"] ]
 
   :profiles { :dev { :repositories { "BaseX Maven Repository" "http://files.basex.org/maven" }
+                     :plugins [[lein-midje "3.0.0"]]
                      :dependencies [[org.basex/basex "7.8.2"]
                                     [midje "1.5.1"]
-                                    [lein-midje "3.0.0"]
                                     [me.raynes/fs "1.4.4"]]}})
 
