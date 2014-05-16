@@ -1,6 +1,6 @@
 ## BaseX Client for Clojure
 
-A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes under BSD) the [BaseXClient class](https://github.com/BaseXdb/basex/blob/master/basex-examples/src/main/java/org/basex/examples/api/BaseXClient.java).
+A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes under BSD) the [BaseXClient class](https://github.com/kouphax/basex-clojure-client/blob/master/src/main/java/basex/core/BaseXClient.java).
 
 ## Usage
 
@@ -36,6 +36,37 @@ The library is broken up in a similar manner.
 - `basex.client`: holds functions related to __Standard Mode__ operations
 - `basex.query`: holds functions related to __Query Mode__ operations
 - `basex.notifications`: holds functions that relate to events handling
+
+#### `basex.client`
+
+- `create-session`
+- `with-session`
+- `execute`
+- `create`
+- `add`
+- `replace`
+- `store`
+- `info`
+- `close`
+
+#### `basex.query`
+
+- `create-query`
+- `with-query`
+- `bind`
+- `context`
+- `more?`
+- `next`
+- `execute`
+- `info`
+- `options`
+- `close`
+
+#### `basex.notifications`
+
+- `watch`
+- `unwatch`
+
 
 ## License
 
