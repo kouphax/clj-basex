@@ -1,6 +1,6 @@
-(defproject basex "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject basex "0.0.1"
+  :description "A Clojure-ified wrapper around the BaseX Java Client"
+  :url "https://github.com/kouphax/basex-clojure-client"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
