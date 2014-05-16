@@ -33,11 +33,10 @@ With the library you will be able to connect to a running BaseX server instance,
 
 The library is broken up in a similar manner.
 
-- `basex.client`: holds functions related to __Standard Mode__ operations
+- `basex.session`: holds functions related to __Standard Mode__ operations
 - `basex.query`: holds functions related to __Query Mode__ operations
-- `basex.notifications`: holds functions that relate to events handling
 
-#### `basex.client`
+#### `basex.session`
 
 - `create-session`
 - `with-session`
@@ -48,6 +47,8 @@ The library is broken up in a similar manner.
 - `store`
 - `info`
 - `close`
+- `watch`
+- `unwatch`
 
 #### `basex.query`
 
@@ -62,12 +63,6 @@ The library is broken up in a similar manner.
 - `info`
 - `options`
 - `close`
-
-#### `basex.notifications`
-
-- `watch`
-- `unwatch`
-
 
 ## License
 

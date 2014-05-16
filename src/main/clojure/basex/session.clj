@@ -1,6 +1,6 @@
-(ns basex.client
+(ns basex.session
   (:refer-clojure :exclude [replace])
-  (:import (basex.core BaseXClient)))
+  (:import (basex.core BaseXClient BaseXClient$EventNotifier)))
 
 (def ^:private default-db-spec
   "Default BaseX specification settings for connecting to a typical BaseX server"
@@ -80,9 +80,9 @@
    Bindings should start with the session declaration but contain as many
    declarations as you need
 
-       (with-session [session (basex.client/create-session)
+       (with-session [session (basex.session/create-session)
                       query   \"xquery 1 to 5\"]
-         (println (basex.client/execute query)))
+         (println (basex.session/execute query)))
 
    In the case above the session and query bindings will be available for use
    in the body of the form. The session will be closed when the form completes"
@@ -92,3 +92,17 @@
        ~@body
       (finally
         (close ~(bindings 0))))))
+
+(defn- build-notifier [notifier-action]
+  (reify BaseXClient$EventNotifier
+    (notify [this value]
+      (notifier-action value))))
+
+(defn watch [session event-name notifier-action]
+  "Add a watch handler to a particular named event"
+  (let [notifier (build-notifier notifier-action)]
+    (.watch session event-name notifier)))
+
+(defn unwatch [session event-name]
+  "Stop watching a particular named event"
+  (.unwatch session event-name))

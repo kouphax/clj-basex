@@ -1,13 +1,13 @@
 (ns basex.query-test
   (:require [midje.sweet :refer :all]
-            [basex.client :as client]
+            [basex.session :as session]
             [basex.query :as query]
             [basex.support :refer [with-test-server]]))
 
 (with-test-server
 
   (fact "We can build and execute queries"
-    (client/with-session [session (client/create-session)]
+    (session/with-session [session (session/create-session)]
       (query/with-query [query (query/create-query session "for $i in 1 to 10 return <xml>Text { $i }</xml>")]
         (query/results query) => (just ["<xml>Text 1</xml>"
                                         "<xml>Text 2</xml>"
@@ -22,7 +22,7 @@
         (query/info query) => (contains #"Query executed in"))))
 
   (fact "We can bind external variables to queries"
-    (let [session (client/create-session)
+    (let [session (session/create-session)
           input "declare variable $name external;
                for $i in 1 to 10 return element { $name } { $i }"
           query (query/create-query session input)]

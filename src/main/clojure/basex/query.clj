@@ -2,6 +2,8 @@
   (:refer-clojure :exclude [next]))
 
 (defn create-query [session query]
+  "Creates a new query instance for the given session based on the passed in
+   query string"
   (.query session query))
 
 (defn bind
@@ -23,12 +25,8 @@
   (.next query))
 
 (defn results [query]
-  (lazy-seq (loop [has-more? (more? query)
-                   results   []]
-              (if-not has-more?
-                results
-                (let [memo (conj results (next query))]
-                  (recur (more? query) memo))))))
+  (take-while #(not (nil? %))
+              (repeatedly #(next query))))
 
 (defn execute [query]
   (.execute query))
