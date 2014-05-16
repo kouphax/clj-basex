@@ -1,10 +1,12 @@
 ## BaseX Client for Clojure
 
-A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes under BSD) the [BaseXClient class](https://github.com/kouphax/basex-clojure-client/blob/master/src/main/java/basex/core/BaseXClient.java).
+A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes under BSD) the [BaseXClient class](https://github.com/kouphax/basex-clojure-client/blob/master/src/main/java/basex/core/BaseXClient.java) and does not attempt to add a raft of additional features (save for some Clojure flavoured tweaks).
 
 ## Usage
 
 ### Dependency
+
+> The library is not yet released as yet so this content is not strictly accurate.  Or, if you're feeling snarky - a lie.
 
 The library is available via [Clojars](#TODO)
 
