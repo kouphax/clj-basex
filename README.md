@@ -57,6 +57,7 @@ The library is broken up in a similar manner.
 - `context`
 - `more?`
 - `next`
+- `results`
 - `execute`
 - `info`
 - `options`
