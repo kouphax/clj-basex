@@ -1,5 +1,7 @@
 ## BaseX Client for Clojure
 
+[Build Status](https://travis-ci.org/kouphax/basex-clojure-client)
+
 A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes under BSD) the [BaseXClient class](https://github.com/kouphax/basex-clojure-client/blob/master/src/main/java/basex/core/BaseXClient.java) and does not attempt to add a raft of additional features (save for some Clojure flavoured tweaks).
 
 ## Usage
@@ -27,6 +29,8 @@ Or with Maven
 ```
 
 ### In Code
+
+[Generated API Documentation](https://rawgit.com/kouphax/basex-clojure-client/master/doc/index.html) (temporary location)
 
 With the library you will be able to connect to a running BaseX server instance, execute database commands, perform queries or listen to events. There are 2 main forms of operation
 
@@ -65,6 +69,10 @@ The library is broken up in a similar manner.
 - `info`
 - `options`
 - `close`
+
+### Production Ready?
+
+Its a small wrapper over a client that has been around for a while.  It's fairly simple and last time I checked the examples passed (codified as the test suite).  So honestly - yeah it probably is.  Have I used in it __production__? No, but I would.  Have a look at the code, it'll not take long, and decide for yourself. YMMV.
 
 ## License
 
