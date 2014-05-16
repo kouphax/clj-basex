@@ -72,3 +72,23 @@
   "Closes the currently open session."
   [session]
   (.close session))
+
+(defmacro with-session
+  "Simple macro that allows clean handling of session. Wraps statements in a
+   try block that will attempt to close the session in the finally block.
+
+   Bindings should start with the session declaration but contain as many
+   declarations as you need
+
+       (with-session [session (basex.client/create-session)
+                      query   \"xquery 1 to 5\"]
+         (println (basex.client/execute query)))
+
+   In the case above the session and query bindings will be available for use
+   in the body of the form. The session will be closed when the form completes"
+  [bindings & body]
+  `(let ~bindings
+     (try
+       ~@body
+      (finally
+        (close ~(bindings 0))))))

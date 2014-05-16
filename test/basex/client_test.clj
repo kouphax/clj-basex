@@ -18,7 +18,7 @@
       (client/create-session { :port 1990 })          => (throws Exception))
 
     (fact "We can execute arbitrary xquery commands"
-      (let [session (client/create-session)]
+      (client/with-session [session (client/create-session)]
         (client/execute session "xquery 1 to 10") => (exactly "1 2 3 4 5 6 7 8 9 10")
         (client/execute session "create db database")
         (client/info session) => (contains #"Database 'database' created in")
@@ -26,10 +26,10 @@
         (client/info session) => (contains #"Database 'database' was dropped")))
 
     (fact "We can add and query documents"
-      (let [session (client/create-session)
-            doc-1   (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 1!</x>"))
-            doc-2   (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 2!</x>"))
-            doc-3   (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 3!</x>"))]
+      (client/with-session [session (client/create-session)
+                            doc-1   (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 1!</x>"))
+                            doc-2   (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 2!</x>"))
+                            doc-3   (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 3!</x>"))]
         (client/execute session "create db database")
         (client/add session "doc-1" doc-1)
         (client/info session) => (contains #"Path \"doc-1\" added in")
@@ -41,10 +41,10 @@
         (client/execute session "drop db database")))
 
     (fact "We can store binary files"
-      (let [session (client/create-session)
-            data    (byte-array (map byte (range 128)))
-            doc-in  (java.io.ByteArrayInputStream. data)
-            doc-out (java.io.ByteArrayOutputStream.)]
+      (client/with-session [session (client/create-session)
+                            data    (byte-array (map byte (range 128)))
+                            doc-in  (java.io.ByteArrayInputStream. data)
+                            doc-out (java.io.ByteArrayOutputStream.)]
         (client/execute session "create db database")
         (client/store session "test.bin" doc-in)
         (client/info session) => (contains #"Query executed in")
