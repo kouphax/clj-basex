@@ -106,7 +106,7 @@ This is the lowest form of server command communication and can be used to achie
 ```clojure
 (basex/with-session [session (basex/create-session)
                      doc     (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 1!</x>"))]
-  (basex/create session doc))
+  (basex/create session "lonely-messages" doc))
 ```
 
 __IMPORTANT__: `create` will __override__ any existing database with the supplied name.
