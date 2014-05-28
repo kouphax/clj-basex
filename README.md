@@ -1,6 +1,6 @@
 ## BaseX Client for Clojure
 
-[Build Status](https://travis-ci.org/kouphax/basex-clojure-client)
+[Build Status](https://travis-ci.org/kouphax/clj-basex)
 
 A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes under BSD) the [BaseXClient class](https://github.com/kouphax/basex-clojure-client/blob/master/src/main/java/basex/core/BaseXClient.java) and does not attempt to add a raft of additional features (save for some Clojure flavoured tweaks).
 
