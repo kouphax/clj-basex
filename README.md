@@ -97,6 +97,8 @@ When the form completes or an exception is thrown it will attempt to close the d
 ; 1 2 3 4 5 6 7 8 9 10
 ```
 
+This is the lowest form of server command communication and can be used to achieve other _higher order_ methods.  But at the end of the day its all just strings over the wire.
+
 - `create`
 - `add`
 - `replace`
