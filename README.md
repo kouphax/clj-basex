@@ -86,7 +86,17 @@ If the `db-spec` points to an available BaseX server instance a session will be 
 
 When the form completes or an exception is thrown it will attempt to close the declared `session` to avoid leaking of resources.
 
-- `execute`
+##### `execute`
+
+`execute` allows you to send commands to the sessions connected BaseX server.  Commands are sent as a string and output can either be returned diretly from the execute method as a string or pumped into a stream.
+
+```clojure
+(basex/with-session [session (basex/create-session)]
+  (basex/execute session "xquery 1 to 10"))
+  
+; 1 2 3 4 5 6 7 8 9 10
+```
+
 - `create`
 - `add`
 - `replace`
