@@ -97,9 +97,20 @@ When the form completes or an exception is thrown it will attempt to close the d
 ; 1 2 3 4 5 6 7 8 9 10
 ```
 
-This is the lowest form of server command communication and can be used to achieve other _higher order_ methods.  But at the end of the day its all just strings over the wire.
+This is the lowest form of server command communication and can be used to achieve other _higher level_ methods.  But at the end of the day its all just strings over the wire.
 
-- `create`
+##### `create`
+
+`create` is used to create a new database using the passed in stream of XML as a basis. It will also then implicitly switch to the databse within the current session.  
+
+```clojure
+(basex/with-session [session (basex/create-session)
+                     doc     (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 1!</x>"))]
+  (basex/create session doc))
+```
+
+__IMPORTANT__: `create` will __override__ any existing database with the supplied name.
+
 - `add`
 - `replace`
 - `store`
