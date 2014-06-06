@@ -156,6 +156,13 @@ Returns information about the last command executed
 
 ##### `close`
 
+Closes the currently open session.  This is done for you when you use the `with-session` macro
+
+```clojure
+(def session (basex/create-session))
+(close session)
+```
+
 ##### `watch`
 
 ##### `unwatch`
