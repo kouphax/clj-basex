@@ -111,7 +111,7 @@ This is the lowest form of server command communication and can be used to achie
 
 __IMPORTANT__: `create` will __override__ any existing database with the supplied name.
 
-- `add`
+##### `add`
 
 Adds an XML stream to the currently opened database at the specified path. A document with the same path may occur than once in a database. If this is unwanted, `replace` can be used.
 
@@ -122,7 +122,7 @@ Adds an XML stream to the currently opened database at the specified path. A doc
   (basex/add session "/helloworld.xml" doc))
 ```
    
-- `replace`
+##### `replace`
 
 Replaces a document in the currently opened database at the specified path with the XML stream as contents, or adds a new document if the resource does not exist yet.
 
@@ -133,25 +133,39 @@ Replaces a document in the currently opened database at the specified path with 
   (basex/replace session "/helloworld.xml" doc))
 ```
 
-- `store`
-- `info`
-- `close`
-- `watch`
-- `unwatch`
+##### `store`
+
+##### `info`
+
+##### `close`
+
+##### `watch`
+
+##### `unwatch`
 
 #### `basex.query`
 
-- `create-query`
-- `with-query`
-- `bind`
-- `context`
-- `more?`
-- `next`
-- `results`
-- `execute`
-- `info`
-- `options`
-- `close`
+##### `create-query`
+
+##### `with-query`
+
+##### `bind`
+
+##### `context`
+
+##### `more?`
+
+##### `next`
+
+##### `results`
+
+##### `execute`
+
+##### `info`
+
+##### `options`
+
+##### `close`
 
 ### Production Ready?
 
