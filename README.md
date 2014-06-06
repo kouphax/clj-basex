@@ -135,6 +135,14 @@ Replaces a document in the currently opened database at the specified path with 
 
 ##### `store`
 
+Stores a raw file in the opened database at the specified path.
+
+```clojure
+(basex/with-session [session (basex/create-session)
+                     doc     (clojure.java.io/input-stream "sadface.png")]
+  (basex/store session "/sadface.png" doc))
+```
+
 ##### `info`
 
 ##### `close`
@@ -142,6 +150,8 @@ Replaces a document in the currently opened database at the specified path with 
 ##### `watch`
 
 ##### `unwatch`
+
+<hr/>
 
 #### `basex.query`
 
