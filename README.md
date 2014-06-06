@@ -112,6 +112,16 @@ This is the lowest form of server command communication and can be used to achie
 __IMPORTANT__: `create` will __override__ any existing database with the supplied name.
 
 - `add`
+
+Adds an XML stream to the currently opened database at the specified path. A document with the same path may occur than once in a database. If this is unwanted, `replace` can be used.
+
+```clojure
+(basex/with-session [session (basex/create-session)
+                     doc     (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 1!</x>"))]
+  (basex/execute session "OPEN lonely-messages")
+  (basex/add session "/helloworld.xml" doc))
+```
+   
 - `replace`
 - `store`
 - `info`
