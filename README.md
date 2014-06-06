@@ -145,6 +145,15 @@ Stores a raw file in the opened database at the specified path.
 
 ##### `info`
 
+Returns information about the last command executed
+
+```clojure
+(basex/with-session [session (basex/create-session)
+                     doc     (clojure.java.io/input-stream "sadface.png")]
+  (basex/store session "/sadface.png" doc)
+  (basex/info session))
+```
+
 ##### `close`
 
 ##### `watch`
