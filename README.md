@@ -123,6 +123,16 @@ Adds an XML stream to the currently opened database at the specified path. A doc
 ```
    
 - `replace`
+
+Replaces a document in the currently opened database at the specified path with the XML stream as contents, or adds a new document if the resource does not exist yet.
+
+```clojure
+(basex/with-session [session (basex/create-session)
+                     doc     (java.io.ByteArrayInputStream. (.getBytes "<x>Hello World 2!</x>"))]
+  (basex/execute session "OPEN lonely-messages")
+  (basex/replace session "/helloworld.xml" doc))
+```
+
 - `store`
 - `info`
 - `close`
