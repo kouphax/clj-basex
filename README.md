@@ -10,21 +10,27 @@ A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes u
 
 > The library is not yet released as yet so this content is not strictly accurate.  Or, if you're feeling snarky - a lie.
 
-The library is available via [Clojars](#TODO)
+The library is available via [Clojars](https://clojars.org/basex)
 
-With Leiningen
+### Leiningen
 
-```clojure
-[TODO "TODO"]
+```
+[basex "1.0.0"]
 ```
 
-Or with Maven
+### Gradle
 
-```xml
+```
+compile "basex:basex:1.0.0"
+```
+
+### Maven
+
+```
 <dependency>
-  <groupId>???</groupId>
-  <artifactId>???</artifactId>
-  <version>???</version>
+  <groupId>basex</groupId>
+  <artifactId>basex</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
 
