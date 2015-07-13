@@ -8,8 +8,6 @@ A Clojure-ified wrapper around the BaseX Java client. It uses (and distributes u
 
 ### Dependency
 
-> The library is not yet released as yet so this content is not strictly accurate.  Or, if you're feeling snarky - a lie.
-
 The library is available via [Clojars](https://clojars.org/basex)
 
 ### Leiningen
@@ -168,10 +166,6 @@ Closes the currently open session.  This is done for you when you use the `with-
 (def session (basex/create-session))
 (close session)
 ```
-
-##### `watch`
-
-##### `unwatch`
 
 <hr/>
 
