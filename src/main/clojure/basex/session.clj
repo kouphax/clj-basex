@@ -1,6 +1,6 @@
 (ns basex.session
   (:refer-clojure :exclude [replace])
-  (:import (basex.core BaseXClient BaseXClient$EventNotifier)))
+  (:import (basex.core BaseXClient)))
 
 (def ^:private default-db-spec
   "Default BaseX specification settings for connecting to a typical BaseX server"
@@ -93,16 +93,3 @@
       (finally
         (close ~(bindings 0))))))
 
-(defn- build-notifier [notifier-action]
-  (reify BaseXClient$EventNotifier
-    (notify [this value]
-      (notifier-action value))))
-
-(defn watch [session event-name notifier-action]
-  "Add a watch handler to a particular named event"
-  (let [notifier (build-notifier notifier-action)]
-    (.watch session event-name notifier)))
-
-(defn unwatch [session event-name]
-  "Stop watching a particular named event"
-  (.unwatch session event-name))
