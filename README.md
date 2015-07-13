@@ -32,7 +32,7 @@ Or with Maven
 
 [Generated API Documentation](https://rawgit.com/kouphax/basex-clojure-client/master/doc/index.html) (temporary location)
 
-With the library you will be able to connect to a running BaseX server instance, execute database commands, perform queries or listen to events. There are 2 main forms of operation (as per the BaseX documentation itself)
+With the library you will be able to connect to a running BaseX server instance, execute database commands and perform queries. There are 2 main forms of operation (as per the BaseX documentation itself)
 
 - __Standard Mode__: connecting to a server, sending commands
 - __Query Mode__: defining queries, binding variables, iterative evaluation
@@ -62,7 +62,7 @@ We can import `basex.session` where we want to use it
 (def session (basex/create-session { :port 1985 }))
 
 ; create a session with a complete db-spec
-(def session (basex/create-session     
+(def session (basex/create-session
   { :host     "localhost"
     :port     1984
     :username "admin"
@@ -93,7 +93,7 @@ When the form completes or an exception is thrown it will attempt to close the d
 ```clojure
 (basex/with-session [session (basex/create-session)]
   (basex/execute session "xquery 1 to 10"))
-  
+
 ; 1 2 3 4 5 6 7 8 9 10
 ```
 
@@ -101,7 +101,7 @@ This is the lowest form of server command communication and can be used to achie
 
 ##### `create`
 
-`create` is used to create a new database using the passed in stream of XML as a basis. It will also then implicitly switch to the databse within the current session.  
+`create` is used to create a new database using the passed in stream of XML as a basis. It will also then implicitly switch to the databse within the current session.
 
 ```clojure
 (basex/with-session [session (basex/create-session)
@@ -121,7 +121,7 @@ Adds an XML stream to the currently opened database at the specified path. A doc
   (basex/execute session "OPEN lonely-messages")
   (basex/add session "/helloworld.xml" doc))
 ```
-   
+
 ##### `replace`
 
 Replaces a document in the currently opened database at the specified path with the XML stream as contents, or adds a new document if the resource does not exist yet.
